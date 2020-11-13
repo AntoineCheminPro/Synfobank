@@ -10,6 +10,7 @@ class UserAccessController extends AbstractController
 {
     /**
      * @Route("/user/access", name="user_access")
+     * @Route("/", name="index")
      */
     public function index(): Response
     {
