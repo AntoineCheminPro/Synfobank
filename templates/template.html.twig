@@ -8,12 +8,12 @@
           <h1 class="display-4">La Banque Normande</h1>
           <p class="lead ">La banque qui mets vos sous de côté !</p>
           <!-- Si un utilisateur est connecté on affiche son nom -->
-          {% if app.user %}
+          {# {% if app.user %}
             <p>Bonjour {{app.user.username}}</p>
-          {% endif %}
+          {% endif %} #}
         </div>
-        <div class="offset-4 col-2">
-            <img src="templates\img\pig.png" alt="logoSynfobank">
+        <div class="offset-2 col-2">
+            <img class="logo" src="{{ asset('images/pig.png') }}" alt="logoSynfobank"/>
         </div>
     </div>
 </header>
