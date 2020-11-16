@@ -1,5 +1,7 @@
 {% extends 'template.html.twig' %}
 
+{% form_theme registrationForm 'bootstrap_4_layout.html.twig' %}
+
 {% block title %}Inscription{% endblock %}
 
 {% block main %}
@@ -17,7 +19,7 @@
                 }}
             </div>
             <div class="col">
-                {{ form_row(registrationForm.Password, {
+                {{ form_row(registrationForm.plainPassword, {
                     label: "Votre mot de passe :"
                 })
                 }}
