@@ -8,12 +8,12 @@
           <h1 class="display-4">La Banque Normande</h1>
           <p class="lead ">La banque qui mets vos sous de côté !</p>
           <!-- Si un utilisateur est connecté on affiche son nom -->
-          {% if app.user %}
+          {# {% if app.user %}
             <p>Bonjour {{app.user.username}}</p>
-          {% endif %}
+          {% endif %} #}
         </div>
-        <div class="offset-4 col-2">
-            <img src="templates\img\pig.png" alt="logoSynfobank">
+        <div class="offset-3 col-2">
+            <img class="logo" src="{{ asset('images/pig.png') }}" alt="logoSynfobank"/>
         </div>
     </div>
 </header>
@@ -54,7 +54,8 @@
 <footer class=" pt-4 pt-md-5 border-top bg-dark text-white">
   <div class="row">
     <div class="col-12 col-md">
-      <small class="d-block mb-3 text-muted">© 2017-2018</small>
+      <p class="d-block text-center">&copy; Synfobank - November 2020</p>
+      <p class="d-block text-center pl-3">Vos conseillers bancaires : Antoine et Mathieu</p>
     </div>
     <div class="col-6 col-md ">
       <h5>Features</h5>
