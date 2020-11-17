@@ -35,6 +35,15 @@ class AccountRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findAccountsByUserId($id)
+    {
+        return $this->createQueryBuilder('account')
+            ->andWhere('user_id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Account
