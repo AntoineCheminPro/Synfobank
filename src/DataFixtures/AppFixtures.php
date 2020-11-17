@@ -10,10 +10,6 @@ use Doctrine\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
-    public const USER_REFERENCE ="user";
-    public CONST ACCOUNT_REFERENCE ="account";
-    public CONST OPERATION_REFERENCE ="operation";
-
     public function load(ObjectManager $manager)
     {
         // use the factory to create a Faker\Generator instance
@@ -21,7 +17,7 @@ class AppFixtures extends Fixture
         $cities =[
             [76000, "rouen"], 
             [27500, "pont-audemer"],
-            [76380, "Calteleu"],
+            [76380, "Canteleu"],
             [76800, "Saint-Etienne-du-Rouveray"],
             [76530, "Grand-Couronne"]
         ];
@@ -39,7 +35,7 @@ class AppFixtures extends Fixture
         $operationTypes = ["Débit", "Crédit"];
         $date = new \DateTime(date('d-m-Y'));
         
-        for ($i = 0; $i < 30; $i++)
+        for ($i = 0; $i < 10; $i++)
         {
             $city = $cities[array_rand($cities,1)];
             $user = new User();
