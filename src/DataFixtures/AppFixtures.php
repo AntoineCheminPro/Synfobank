@@ -8,14 +8,11 @@ use App\Entity\Operation;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-
 class AppFixtures extends Fixture
 {
     public const USER_REFERENCE ="user";
     public CONST ACCOUNT_REFERENCE ="account";
     public CONST OPERATION_REFERENCE ="operation";
-    
-    
 
     public function load(ObjectManager $manager)
     {
@@ -29,9 +26,7 @@ class AppFixtures extends Fixture
             [76530, "Grand-Couronne"]
         ];
         $LastNames =["Martin", "Dupont", "Durand", "Duval", "Gossart", "Chemin", "Kouassi", "Roche", "Feuille", "Singh"];
-        $FirstNames = [["M", "Olivier"],
-                        ["M", "Thomas"],
-                        ["Mme", "Aurélie"],
+        $FirstNames = [["M", "Olivier"],["M", "Thomas"],["Mme", "Aurélie"],
                         ["Mme", "Agnès"],
                         ["M","Antoine"],
                         ["Mlle", "Anaïs"],
@@ -40,12 +35,12 @@ class AppFixtures extends Fixture
                         ["M", "Gilles"],
                         ["Mme", "Isabelle"]];
         $streets= ["25 rue du terrain", "12 rue de la république", "32 place de la mairie", "13 rue de la poste", "11 avenue Gambetta"];
-        $sex=["M","Mme"];
         $accountTypes = ["compte commun", "compte courant", "livret A", "PEL"];
         $operationTypes = ["Débit", "Crédit"];
         $date = new \DateTime(date('d-m-Y'));
         
-        for ($i = 0; $i < 3; $i++){
+        for ($i = 0; $i < 30; $i++)
+        {
             $city = $cities[array_rand($cities,1)];
             $user = new User();
             $firstname = $FirstNames[array_rand($FirstNames,1)];
@@ -68,7 +63,7 @@ class AppFixtures extends Fixture
                 $account->setOpeningDate($date);
                 $account->setUser($user);
                 $manager->persist($account);
-                for ($i = 0; $i < 3; $i++){
+                for ($j = 0; $j < 5; $j++){
                     $operation = new Operation();
                     $operationType = $operationTypes[array_rand($operationTypes,1)];
                     $operation->setOperationType($operationType);
@@ -77,11 +72,11 @@ class AppFixtures extends Fixture
                     $operation->setLabel("lorem ipsum");
                     $operation->setAccount($account);
                     $manager->persist($operation);
-                    }
+                }
             }
         }
-       
         $manager->flush();
     }
+
 }
 
