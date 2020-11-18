@@ -2,33 +2,37 @@
 
 namespace App\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Account;
 
-
+/**
+* @IsGranted("IS_AUTHENTICATED_FULLY")
+*/
 class AccountController extends AbstractController
 {
     /**
-     * @Route("/accounts", name="accounts")
+     * @Route("/", name="index")
      */
     public function index(): Response
     {
-        $user = $this->getUser();
-        $accountsRepository = $this->getDoctrine()
-            ->getRepository(Account::class);
-        $accounts =$accountsRepository->findAll();
+        // $user = $this->getUser();
+        // $accountsRepository = $this->getDoctrine()
+        //     ->getRepository(Account::class);
+        // $accounts =$accountsRepository->findBy(array $user);
 
-        if (!$accounts) {
-            throw $this->createNotFoundException(
-                'No account found '
-            );
-            }
+        // if (!$accounts) {
+        //     throw $this->createNotFoundException(
+        //         'No account found '
+        //     );
+        //     }
 
-        return $this->render('accounts/index.html.twig', [
-            'accounts' => $accounts,
-        ]);
+        // return $this->render('accounts/index.html.twig', [
+        //     'accounts' => $accounts,
+        // ]);
+        return $this->render('accounts/index.html.twig');
     }
 
     /**

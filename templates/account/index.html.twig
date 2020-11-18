@@ -5,7 +5,7 @@
 
 <div class="row justify-content-between">
     <article class="card text-white bg-info m-4 px-0 col-4" style="max-width: 18rem;">
-        {# <div class="card-header text-center">{{user.sex}} {{user.firstname}} {{user.lastname}}</div> #}
+        <div class="card-header text-center">{{app.user.sex}} {{app.user.firstname}} {{app.user.lastname}}</div>
         <div class="card-header text-center">{{account.accountType}}</div>
         <div class="card-header text-center">Numéro : {{account.id}}</div>
         <div class="card-body bg-white">
@@ -16,6 +16,5 @@
             </div>
         </div>
     </article>
- 
 </div>
 {% endblock %}
