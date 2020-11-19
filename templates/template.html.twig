@@ -8,9 +8,9 @@
           <h1 class="display-4">La Banque Normande</h1>
           <p class="lead ">La banque qui mets vos sous de côté !</p>
           <!-- Si un utilisateur est connecté on affiche son nom -->
-          {# {% if app.user %}
+          {% if app.user %}
             <p>Bonjour {{app.user.username}}</p>
-          {% endif %} #}
+          {% endif %}
         </div>
         <div class="offset-3 col-2">
             <img class="logo" src="{{ asset('images/pig.png') }}" alt="logoSynfobank"/>
@@ -21,7 +21,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light text-secondary mb-2 ">
     {# <!-- Si un utilisateur est connecté avec le rôle de base --> #}
-    {# {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <a class="navbar-brand bg-danger rounded-pill p-2 text-white" href="{{path('app_logout')}}">Déconnexion</a>
     {% else %}
       <a href="{{path('app_login')}}" class="btn btn-dark">Connexion</a>
@@ -43,7 +43,7 @@
           <a class="nav-link text-secondary" href="{{ path("acountcreation") }}">Création de compte</a>
         </li>
       </ul>
-    </div> #}
+    </div>
 </nav>
 
 <main class="container">
