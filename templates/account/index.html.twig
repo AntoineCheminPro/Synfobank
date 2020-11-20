@@ -3,18 +3,28 @@
 
 {% block main %}
 
-<div class="row justify-content-between">
-    <article class="card text-white bg-info m-4 px-0 col-4" style="max-width: 18rem;">
-        <div class="card-header text-center">{{app.user.sex}} {{app.user.firstname}} {{app.user.lastname}}</div>
-        <div class="card-header text-center">{{account.accountType}}</div>
-        <div class="card-header text-center">Numéro : {{account.id}}</div>
-        <div class="card-body bg-white">
-            <h5 class="card-title text-warning text-center">{{account.amount}}</h5>
-            <p class="card-text text-dark">Derniére Opération</p>
-            <div class="text-center">
-            {# <a class="btn btn-warning text-center" href="">Consulter</a> #}
-            </div>
-        </div>
-    </article>
-</div>
+	<div class="row justify-content-between">
+		<article class="card text-white bg-info m-4 px-0 col-4" style="max-width: 18rem;">
+			<div class="card-header text-center">{{app.user.sex}}
+				{{app.user.firstname}}
+				{{app.user.lastname}}</div>
+			<div class="card-header text-center">{{account.accountType}}</div>
+			<div class="card-header text-center">Numéro :
+				{{account.id}}</div>
+			<div class="card-body bg-white">
+				<h5 class="card-title text-warning text-center">{{account.amount}}</h5>
+				<p class="card-text text-dark">Derniére Opération</p>
+				{% if account.operations is not empty %}
+					{% for operation in account.operations %}
+						<p class="card-text text-dark">{{operation.operationType}}
+							{{operation.amount}}
+							{{operation.label}}</p>
+					{% endfor %}
+				{% endif %}
+				<div
+					class="text-center">{# <a class="btn btn-warning text-center" href="">Consulter</a> #}
+				</div>
+			</div>
+		</article>
+	</div>
 {% endblock %}

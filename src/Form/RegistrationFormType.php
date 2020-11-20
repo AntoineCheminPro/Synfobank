@@ -38,6 +38,18 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('firstname')
+            ->add('lastname')
+            ->add('adress')
+            ->add('city_code')
+            ->add('city')
+            ->add('birth_date')
+            ->add('sex')
+            ->add('phone')
+
+
+
+
         ;
     }
 
