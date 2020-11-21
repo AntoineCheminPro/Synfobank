@@ -9,7 +9,7 @@
           <p class="lead ">La banque qui mets vos sous de côté !</p>
           <!-- Si un utilisateur est connecté on affiche son nom -->
           {% if app.user %}
-            <p>Bonjour {{app.user.username}}</p>
+            <p>Bonjour {{app.user.firstname}} {{app.user.lastname}}</p>
           {% endif %}
         </div>
         <div class="offset-3 col-2">

@@ -3,16 +3,49 @@
 
 {% block main %}
 
-<div class="row justify-content-between">
-    <article class="card text-white bg-info m-4 px-0 col-4" style="max-width: 18rem;">
-        {# <div class="card-header text-center">{{user.sex}} {{user.firstname}} {{user.lastname}}</div> #}
-        <div class="card-header text-center">{{account.accountType}}</div>
-        <div class="card-header text-center">Numéro : {{account.id}}</div>
-        <div class="card-body bg-white">
-            <h5 class="card-title text-warning text-center">{{account.amount}}</h5>
-            <p class="card-text text-dark">Derniére Opération</p>
-            <div class="text-center">
-        </div>
-    </article>
-</div>
+	<div class="row justify-content-between">
+		<article class="card text-white bg-info m-4 px-0 col-4" style="max-width: 18rem;">
+			<div class="card-header text-center">{{app.user.sex}}
+				{{app.user.firstname}}
+				{{app.user.lastname}}</div>
+			<div class="card-header text-center">{{account.accountType}}</div>
+			<div class="card-header text-center">Numéro :
+				{{account.id}}</div>
+			<div class="card-body bg-white">
+				<h5 class="card-title text-warning text-center">{{account.amount}}</h5>
+				{# <p class="card-text text-dark">Derniére Opération</p>
+				{% if account.operations is not empty %}
+					{% for operation in account.operations %}
+						<p class="card-text text-dark">{{operation.operationType}}
+							{{operation.amount}}
+							{{operation.label}}</p>
+					{% endfor %}
+				{% endif %} #}
+			</div>
+		</article>
+		<div class="col-12 col-md-6 col-lg-8">
+			<p class="card-text text-dark">Dernières opérations</p>
+        	<table class="table table-striped">
+          		<thead>
+            		<tr>
+              			<th scope="col">Label</th>
+              			{# <th scope="col">Date</th> #}
+              			<th scope="col">Type</th>
+              			<th scope="col">Montant</th>
+            		</tr>
+          		</thead>
+          		<tbody>
+          		{% if account.operations is not empty %}
+					{% for operation in account.operations %}
+            			<tr>
+                			<th>{{operation.label}}</th>
+                			<td>{{operation.operationType}}</td>
+                			<td>{{operation.amount}}</td>
+              			</tr>
+            		{% endfor %}
+				{% endif %}
+          		</tbody>
+        	</table>
+      	</div>
+	</div>
 {% endblock %}
