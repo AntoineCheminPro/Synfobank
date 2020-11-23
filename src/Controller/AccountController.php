@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use App\Entity\Account;
 use App\Entity\Operation;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\AccountCreationFormType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
 * @IsGranted("IS_AUTHENTICATED_FULLY")
@@ -38,6 +39,30 @@ class AccountController extends AbstractController
     }
 
     /**
+     * @Route("/accountCreation", name="accountCreation")
+     */
+    public function CreateAccount(Request $request): Response
+        {
+            $account = new Account();
+            $form = $this->createForm(AccountCreationFormType::class, $account);
+            $form->handleRequest($request);
+    
+            if ($form->isSubmitted() && $form->isValid()) {
+                
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($account);
+                $entityManager->flush();
+                // do anything else you need here, like send an email
+    
+                return $this->redirectToRoute('index');
+            }
+    
+            return $this->render('Accounts/accountCreation.html.twig', [
+                'accountCreationForm' => $form->createView(),
+            ]);
+        }
+
+    /**
      * @Route("/account/{id}", name="account", requirements={"id"="\d+"})
      */
     public function single(int $id): Response
@@ -55,5 +80,7 @@ class AccountController extends AbstractController
         return $this->render('account/index.html.twig', [
             'account' => $account,
         ]);
+
+
     }
 }

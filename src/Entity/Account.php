@@ -12,7 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass=AccountRepository::class)
  */
 class Account
+
 {
+    CONST TYPES = ["compte commun", "compte courant", "livret A", "PEL"];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
