@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity(repositoryClass=AccountRepository::class)
  */
@@ -35,14 +36,15 @@ class Account
     private $account_type;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="accounts")
-     */
-    private $user;
-
-    /**
      * @ORM\OneToMany(targetEntity=Operation::class, mappedBy="Account", orphanRemoval=true)
      */
     private $operations;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="accounts")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     public function __construct()
     {
@@ -90,18 +92,6 @@ class Account
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Operation[]
      */
@@ -128,6 +118,18 @@ class Account
                 $operation->setAccount(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
