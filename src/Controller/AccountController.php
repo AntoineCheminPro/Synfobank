@@ -48,7 +48,7 @@ class AccountController extends AbstractController
             $form->handleRequest($request);
     
             if ($form->isSubmitted() && $form->isValid()) {
-                
+                // $account->setOpeningDate();
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($account);
                 $entityManager->flush();
