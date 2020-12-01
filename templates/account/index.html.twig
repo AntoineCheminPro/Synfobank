@@ -31,11 +31,11 @@
           		<tbody class="text-center">
           		{% if account.operations is not empty %}
 					{% for operation in account.operations %}
-            			<tr">
+            			<tr>
                 			<td>{{operation.label}}</td>
 							<td>{{operation.registered|date("d/m/Y")}}</td>
                 			<td>{{operation.operationType}}</td>
-                			<td class="bg-warning">{{operation.amount}} €</td>
+                			<td class="bg-warning" style="opacity:0.8;">{{operation.amount}} €</td>
               			</tr>
             		{% endfor %}
 				{% endif %}
