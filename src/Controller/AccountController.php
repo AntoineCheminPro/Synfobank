@@ -4,12 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Account;
 use App\Entity\Operation;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Form\AccountCreationFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 /**
 * @IsGranted("IS_AUTHENTICATED_FULLY")
@@ -68,8 +69,7 @@ class AccountController extends AbstractController
     public function single(int $id): Response
     {
         $user = $this->getUser();
-        $accountRepository = $this->getDoctrine()
-            ->getRepository(Account::class);
+        $accountRepository = $this->getDoctrine()->getRepository(Account::class);
         $account =$accountRepository->findAccountOperationByAccountId($id);
         if (!$account) {
             throw $this->createNotFoundException(
