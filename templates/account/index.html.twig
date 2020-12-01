@@ -9,22 +9,38 @@
 				{{app.user.firstname}}
 				{{app.user.lastname}}</div>
 			<div class="card-header text-center">{{account.accountType}}</div>
-			<div class="card-header text-center">Numéro :
-				{{account.id}}</div>
+			<div class="card-header text-center">Numéro du compte :
+				{{account.id}}
+			</div>
 			<div class="card-body bg-white">
-				<h5 class="card-title text-warning text-center">{{account.amount}}</h5>
-				<p class="card-text text-dark">Derniére Opération</p>
-				{% if account.operations is not empty %}
-					{% for operation in account.operations %}
-						<p class="card-text text-dark">{{operation.operationType}}
-							{{operation.amount}}
-							{{operation.label}}</p>
-					{% endfor %}
-				{% endif %}
-				<div
-					class="text-center">{# <a class="btn btn-warning text-center" href="">Consulter</a> #}
-				</div>
+				<h5 class="card-title text-warning text-center">Solde : {{account.amount}} €</h5>
 			</div>
 		</article>
+
+		<div class="col-12 col-md-6 col-lg-8">
+			<p class="card-text text-dark">Dernières opérations :</p>
+        	<table class="table table-striped">
+          		<thead class="text-center">
+            		<tr>
+              			<th scope="col">Libellé</th>
+              			<th scope="col">Date</th>
+              			<th scope="col">Type</th>
+              			<th scope="col" class="bg-warning">Montant</th>
+            		</tr>
+          		</thead>
+          		<tbody class="text-center">
+          		{% if account.operations is not empty %}
+					{% for operation in account.operations %}
+            			<tr">
+                			<td>{{operation.label}}</td>
+							<td>{{operation.registered|date("d/m/Y")}}</td>
+                			<td>{{operation.operationType}}</td>
+                			<td class="bg-warning">{{operation.amount}} €</td>
+              			</tr>
+            		{% endfor %}
+				{% endif %}
+          		</tbody>
+        	</table>
+      	</div>
 	</div>
 {% endblock %}

@@ -9,17 +9,15 @@
 					{{app.user.firstname}}
 					{{app.user.lastname}}</div>
 				<div class="card-header text-center">{{account.accountType}}</div>
-				<div class="card-header text-center">Numéro :
+				<div class="card-header text-center">Numéro du compte :
 					{{account.id}}</div>
 				<div class="card-body bg-white">
-					<h5 class="card-title text-warning text-center">{{account.amount}}</h5>
-					<p class="card-text text-dark">Derniére Opération</p>
+					<h5 class="card-title text-warning text-center">Solde : {{account.amount}} €</h5>
 					<div class="text-center">
 						<a class="btn btn-warning text-center" href="{{path('account', {id:account.id})}}">Consulter</a>
 					</div>
 				</div>
 			</article>
 		{% endfor %}
-
 	</div>
 {% endblock %}
