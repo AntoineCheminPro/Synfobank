@@ -47,17 +47,15 @@ class AccountController extends AbstractController
             $account = new Account();
             $form = $this->createForm(AccountCreationFormType::class, $account);
             $form->handleRequest($request);
-    
+
             if ($form->isSubmitted() && $form->isValid()) {
                 // $account->setOpeningDate();
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($account);
                 $entityManager->flush();
                 // do anything else you need here, like send an email
-    
                 return $this->redirectToRoute('index');
             }
-    
             return $this->render('Accounts/accountCreation.html.twig', [
                 'accountCreationForm' => $form->createView(),
             ]);
@@ -95,6 +93,7 @@ class AccountController extends AbstractController
         }
 
         return $this->redirectToRoute('index');
+
     }
 
 }
