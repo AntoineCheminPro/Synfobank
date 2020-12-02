@@ -78,5 +78,22 @@ class AccountController extends AbstractController
         return $this->render('account/index.html.twig', [
             'account' => $account,
         ]);
+
     }
+
+    /**
+     * @Route("/{id}", name="account_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, Account $account): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$account->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($account);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('index');
+
+    }
+
 }
