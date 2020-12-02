@@ -18,16 +18,19 @@ class AccountCreationFormType extends AbstractType
     {
         $builder
             ->add('amount', NumberType::class, [
-                'scale' => 2
-              ])
-              ->add('account_type', ChoiceType::class, [
-                'choices'  => Account::TYPES,
-                // callback function to get the value and not the key from the types array
-                'choice_label' => function ($choice, $key, $value) {
-                  return $value;
-                },
-              ])
-          
+              'scale' => 2,
+              'label'=> 'Montant :',
+            ])
+
+            ->add('account_type', ChoiceType::class, [
+              'choices'  => Account::TYPES,
+              'label' => 'Type de compte :',
+              // callback function to get the value and not the key from the types array
+              'choice_label' => function ($choice, $key, $value) {
+                return $value;
+              },
+            ])
+
             ->add('enregistrer', SubmitType::class,[
             'attr' => [
                 "class" => "btn-info"
