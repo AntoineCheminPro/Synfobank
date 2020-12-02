@@ -14,6 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
 * @IsGranted("IS_AUTHENTICATED_FULLY")
+ * @Route("/account")
 */
 class AccountController extends AbstractController
 {
