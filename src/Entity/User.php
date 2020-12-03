@@ -68,13 +68,13 @@ class User implements UserInterface
     private $adress;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      * @Assert\NotBlank
      * @Assert\Length(max=5)
      * @Assert\Regex(
-     *     pattern="/d/",
+     *     pattern="/^(([0-8][0-9])|(9[0-5]))[0-9]{3}$/",
      *     match=false,
-     *     message="Votre code postal ne doit contenir que des chiffres"
+     *     message="Votre code postal n'est pas au bon format (5 chiffres)"
      * )
      */
     private $city_code;
@@ -110,7 +110,7 @@ class User implements UserInterface
      * @Assert\Regex(
      *     pattern="/(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}/",
      *     match=false,
-     *     message="Votre numéro de téléphonbe doit être au format français (10 chiffres)"
+     *     message="Votre numéro de téléphone n'est pas au bon format (10 chiffres)"
      * )
      */
     private $phone;

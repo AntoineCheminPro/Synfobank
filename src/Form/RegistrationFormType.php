@@ -153,8 +153,7 @@ class RegistrationFormType extends AbstractType
                         'minMessage' => 'Votre numéro de téléphone doit contenir {{ limit }} caractères',
                         'max' => 10,
                     ]),
-                    
-                    ],
+                ],
             ])
 
             ->add('enregistrer', SubmitType::class);
