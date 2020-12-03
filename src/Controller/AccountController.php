@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Account;
 use App\Entity\Operation;
+use App\Entity\User;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Form\AccountCreationFormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,9 +50,12 @@ class AccountController extends AbstractController
             $account = new Account();
             $form = $this->createForm(AccountCreationFormType::class, $account);
             $form->handleRequest($request);
+            $date = new \DateTime(date('d-m-Y'));
+            $user = $this->getUser();
 
             if ($form->isSubmitted() && $form->isValid()) {
-                // $account->setOpeningDate();
+                $account->setOpeningDate($date);
+                $account->setUser($user);
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($account);
                 $entityManager->flush();
