@@ -37,5 +37,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('operation_new') }}">Create new</a>
+    <a href="{{ path('operation_new', {'id':account.id, 'account':account}) }}">Create new</a>
 {% endblock %}

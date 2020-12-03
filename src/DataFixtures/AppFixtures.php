@@ -31,8 +31,8 @@ class AppFixtures extends Fixture
         ];
         $LastNames = ["Martin", "Dupont", "Durand", "Duval", "Gossart", "Chemin", "Kouassi", "Roche", "Feuille", "Singh"];
         $FirstNames = [
-            ["M", "Olivier"], ["M", "Thomas"], ["Mme", "Aurélie"], ["Mme", "Agnès"], ["M", "Antoine"],
-            ["Mlle", "Anaïs"], ["M", "Armand"], ["Mme", "Florence"], ["M", "Gilles"], ["Mme", "Isabelle"]
+            ["M", "Olivier"], ["M", "Thomas"], ["Mme", "Aurelie"], ["Mme", "Agnes"], ["M", "Antoine"],
+            ["Mlle", "Anais"], ["M", "Armand"], ["Mme", "Florence"], ["M", "Gilles"], ["Mme", "Isabelle"]
         ];
         $streets = ["25 rue du terrain", "12 rue de la république", "32 place de la mairie", "13 rue de la poste", "11 avenue Gambetta"];
         $date = new \DateTime(date('d-m-Y'));
