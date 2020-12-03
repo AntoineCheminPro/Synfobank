@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Operation;
+use App\Entity\User;
+use App\Entity\Account;
 use App\Form\OperationType;
 use App\Repository\OperationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,20 +30,37 @@ class OperationController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="operation_new", methods={"GET","POST"})
+     * @Route("/{id}/new", name="operation_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, int $id): Response
     {
         $operation = new Operation();
         $form = $this->createForm(OperationType::class, $operation);
         $form->handleRequest($request);
+        $date = new \DateTime(date('d-m-Y'));
 
+        $accountRepository = $this->getDoctrine()->getRepository(Account::class);
+        $account =$accountRepository->findAccountOperationByAccountId($id);
+
+        $sold = $account->getAmount();
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            $operation->setRegistered($date);
+            $operation->setAccount($account);
+            // switch account amount with new amount
+            $type = $operation->getOperationType();
+            $amount = $operation->getAmount();
+            ($type === "Débit"? $amount = -1*$amount:$amount=$amount);
+            $newSold = $sold + $amount;
+            $account->setAmount($newSold);
+            // persiste data in DB
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($operation);
+            $entityManager->persist($account);
+
             $entityManager->flush();
 
-            return $this->redirectToRoute('operation_index');
+            return $this->redirectToRoute('index');
         }
 
         return $this->render('operation/new.html.twig', [

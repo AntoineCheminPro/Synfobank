@@ -80,6 +80,7 @@ class AccountController extends AbstractController
                 'No account found '
             );
             }
+            dump($account);
 
         return $this->render('account/index.html.twig', [
             'account' => $account,

@@ -15,6 +15,8 @@
 			<div class="card-body bg-white">
 				<h5 class="card-title text-warning text-center">Solde : {{account.amount}} €</h5>
 							{{ include('account/_delete_form.html.twig') }}
+							<a class="btn btn-warning" href="{{ path('operation_new', {id:account.id, 'account':account}) }}">Nouvelle opération</a>
+
 
 			</div>
 		</article>
