@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -22,6 +23,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank
      */
     private $email;
 
@@ -38,41 +40,78 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Votre nom ne doit pas contenir de chiffre"
+     * )
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Votre prénom ne doit pas contenir de chiffre"
+     * )
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Valid
      */
     private $adress;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
+     * @Assert\Length(max=5)
+     * @Assert\Regex(
+     *     pattern="/d/",
+     *     match=false,
+     *     message="Votre code postal ne doit contenir que des chiffres"
+     * )
      */
     private $city_code;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Votre ville ne doit pas contenir de chiffre"
+     * )
      */
     private $city;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank
+     * @Assert\Date
+     * @var string A "d-m-Y" formatted value
      */
     private $birth_date;
 
     /**
      * @ORM\Column(type="string", length=5)
+     * @Assert\NotBlank
      */
     private $sex;
 
     /**
      * @ORM\Column(type="string", length=15)
+     * @Assert\NotBlank
+     * @Assert\Regex(
+     *     pattern="/(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}/",
+     *     match=false,
+     *     message="Votre numéro de téléphonbe doit être au format français (10 chiffres)"
+     * )
      */
     private $phone;
 
