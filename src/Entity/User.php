@@ -239,12 +239,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getCityCode(): ?int
+    public function getCityCode(): ?string
     {
         return $this->city_code;
     }
 
-    public function setCityCode(int $city_code): self
+    public function setCityCode(string $city_code): self
     {
         $this->city_code = $city_code;
 
