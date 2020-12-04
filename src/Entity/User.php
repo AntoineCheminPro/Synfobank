@@ -92,7 +92,6 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="date")
-     * @Assert\NotBlank
      * @Assert\Date
      * @var string A "d-m-Y" formatted value
      */
