@@ -53,6 +53,7 @@ class OperationController extends AbstractController
             ($type === "Débit"? $amount = -1*$amount:$amount=$amount);
             $newSold = $sold + $amount;
             $account->setAmount($newSold);
+            $operation->setAmount($amount);
             // persiste data in DB
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($operation);

@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\PositiveOrZero;
+use Symfony\Component\Validator\Constraints\Positive;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -33,6 +33,9 @@ class OperationType extends AbstractType
                 'attr' => ['placeholder' => "Montant"],
                 'label' => 'Montant',
                 'constraints' => [
+                    new Positive([
+                        'message' => "Le montant ne peut être négatif",
+                    ]),
                     new NotBlank([
                         'message' => "Merci d'entrer un montant pour cette opération",
                     ])],
