@@ -6,8 +6,8 @@ use App\Repository\AccountRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
-
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=AccountRepository::class)
  */
@@ -30,6 +30,8 @@ class Account
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\Date
+     * @var string A "d-m-Y" formatted value
      */
     private $opening_date;
 
